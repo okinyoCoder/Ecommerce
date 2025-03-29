@@ -1,6 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractUser
+#Description, Price, Category, Stock Quantity, Image URL, and Created Date.
 
+class Product(models.Model):
+    class Categ(models.TextChoices):
+        Elec = 'lectronic'
+        Pers ='personal care'
+        Gro = 'grocery'
+        Foo ='food'
+        Clo ='clothing' 
+
+    name = models.TextField(max_length=100)
+    price = models.DecimalField(decimal_places=3)
+    stock = models.IntegerField()
+    image_url = models.ImageField(upload_to='profile_photos/')
+    category = models.CharField( max_length=3, choices=Categ, default=Categ.Foo)
+
+class OrderItem(models.model):
+    ...
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, username, password=None, **extra_fields):
         """

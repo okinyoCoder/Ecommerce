@@ -13,8 +13,8 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = get_user_model().objects.create_user(
-            username = self.validated_data['username']
-            email = self.validated_data['email']
+            username = self.validated_data['username'],
+            email = self.validated_data['email'],
             password = self.validated_data['password']
         )
         token, created = Token.objects.create(user=user)

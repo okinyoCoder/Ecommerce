@@ -18,3 +18,4 @@ class CustomUserSerializer(serializers.ModelSerializer):
             password = self.validated_data['password']
         )
         token, created = Token.objects.create(user=user)
+        return {'token': token.key, 'user': user }

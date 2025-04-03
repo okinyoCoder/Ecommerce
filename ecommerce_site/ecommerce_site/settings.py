@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -54,6 +55,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ecommerce_site.urls'
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    # ...
+}
 
 TEMPLATES = [
     {

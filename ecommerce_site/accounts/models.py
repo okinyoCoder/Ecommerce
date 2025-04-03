@@ -1,8 +1,12 @@
 from django.db import models
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import BaseUserManager, AbstractUser
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, username, password=None, **extra_fields):
+    def create_user(self, email, password=None, **extra_fields):
         """
         Creates and saves a User with the given email, other_fields and password.
         """
@@ -26,7 +30,7 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractUser):
     profile_picture = models.ImageField(upload_to='profile_photos/', blank=True, null=True)
     email = models.EmailField(verbose_name="email address", unique=True, max_length=255)
-    username = models.TextField(max_length=256)
+    username = models.CharField(max_length=56)
 
 
     def __str__(self):
@@ -34,5 +38,10 @@ class CustomUser(AbstractUser):
     
     objects = CustomUserManager()
     USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
 
 
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)

@@ -10,9 +10,14 @@ class ReviewsSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     reviews = ReviewsSerializer(many=True, read_only=True)
+    stock_available = serializers.SerializerMethodField()
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'price', 'stock', 'image_url', 'created_date', 'reviews']
+        fields = ['id', 'name', 'description', 'price', 'stock', 'image_url', 'created_date', 'reviews', 'stock_available']
+
+        def get_stock_available(self, data):
+            if data['stock'] < 1:
+                return False
 
 class CategorySerializer(serializers.ModelSerializer):
     products = ProductSerializer(many=True, read_only=True)

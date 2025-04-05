@@ -28,6 +28,7 @@ venv\Scripts\activate
 source venv/bin/activate
 pip install -r requirements.txt
 
+# API Features
 Authentication
 Method	Endpoint	    Description
 POST	/register/	    Register a new user

@@ -19,7 +19,7 @@ This is a Django REST Framework-based API for managing products and reviews in a
 
 ### 1. Clone the repository
 ```sh
-git clone https://github.com/yourusername/ecommerce-api.git
+git clone https://github.com/okinyoCoder/ecommerce-api.git
 cd ecommerce-api
 python -m venv venv
 # On Windows
@@ -31,7 +31,7 @@ pip install -r requirements.txt
 Authentication
 Method	Endpoint	    Description
 POST	/register/	    Register a new user
-POST	/login/  	    Authenticate and get tok
+POST	/login/  	    Authenticate and get token
 
 Products
 Method	Endpoint	            Description	Permission

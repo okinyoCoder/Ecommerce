@@ -50,3 +50,18 @@ class ReviewDestroyAPIView(DestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewsSerializer
     permission_classes = [IsAuthenticated]
+
+#CRUD operation for Reviews Category
+class CategoryCreateAPIview(CreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [IsAdminUser]
+
+class CategoryDestroyAPIView(DestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [IsAdminUser]
+
+class CategoryListAPIView(ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer

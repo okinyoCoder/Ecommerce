@@ -31,7 +31,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = 'django-insecure-#%kyw2o%b5b$94&$832vyhxgp-0pc!3ay_dpct4y#yadi!*!^n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -99,13 +99,22 @@ WSGI_APPLICATION = 'ecommerce_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+#DATABASES = {
+    #'default': {
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3',
+    #}
+#}
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ecommerce',
+        'USER': 'okinyo',
+        'PASSWORD': 'root#254',
+        'HOST': 'localhost',  
+        'PORT': '3306',       
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -146,3 +155,19 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# Prevent XSS
+SECURE_BROWSER_XSS_FILTER = True
+
+# Prevent clickjacking
+X_FRAME_OPTIONS = 'DENY'
+
+# Prevent content type sniffing
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Redirect HTTP to HTTPS (make sure your server supports HTTPS)
+SECURE_SSL_REDIRECT = True
+
+# Use secure cookies
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True

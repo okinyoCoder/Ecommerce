@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
+    'drf_spectacular',
 ]
 
 
@@ -65,6 +66,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'ecommerce_site.urls'
 REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
@@ -171,3 +173,10 @@ SECURE_SSL_REDIRECT = True
 # Use secure cookies
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+# Configure Spectacular settings
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Ecommerce API',
+    'DESCRIPTION': 'API for managing blog products, reviews, and categories',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}

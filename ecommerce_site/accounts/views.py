@@ -35,5 +35,4 @@ def register_view(request):
                 'user': serializer.data,
             }
             return Response(data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)      

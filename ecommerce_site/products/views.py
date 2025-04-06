@@ -97,16 +97,28 @@ class ReviewDestroyAPIView(DestroyAPIView):
 
 #CRUD operation for Reviews Category
 @extend_schema_view(
-    list=extend_schema(description='Get a list of all categories'),
-    retrieve=extend_schema(description='Get details of a specific category'),
-    create=extend_schema(description='Create a new category'),
-    update=extend_schema(description='Update an existing category'),
-    destroy=extend_schema(description='Delete a category')
+    list=extend_schema(
+        description='Get a list of all categories in Ecommerce products',
+        responses={200: CategorySerializer(many=True)}
+    ),
+    retrieve=extend_schema(
+        description='Get details of a specific category in Ecommerce product',
+        responses={200: CategorySerializer}
+    ),
+    create=extend_schema(
+        description='Create a new category for Ecommerce products',
+        responses={201: CategorySerializer}
+    ),
+    destroy=extend_schema(
+        description='Delete a category Ecommerce product',
+        responses={204: None}
+    )
 )
+
 class CategoryCreateAPIview(CreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAuthenticated]
 
 class CategoryDestroyAPIView(DestroyAPIView):
     queryset = Category.objects.all()

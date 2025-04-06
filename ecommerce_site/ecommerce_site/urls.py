@@ -25,9 +25,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('accounts.urls')),
     path('product/', include('products.urls')),
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
   # Swagger UI endpoints
-path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),

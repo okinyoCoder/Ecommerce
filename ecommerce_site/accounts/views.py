@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework import status
@@ -19,8 +19,9 @@ def login_view(request):
         return Response({'token': token.key}, status=status.HTTP_200_OK)
     else:
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
-    
+
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def register_view(request):
     if request.method == "POST":
         serializer = CustomUserSerializer(data=request.data)

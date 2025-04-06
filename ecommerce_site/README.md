@@ -1,82 +1,60 @@
-🛒 E-Commerce API
-A Django REST Framework-powered API for managing products and reviews in an e-commerce platform. It supports full CRUD operations, user authentication, and advanced filtering/searching features.
+# E-Commerce API
 
-🚀 Features
-User Authentication: Token-based authentication for secure access.
+This is a Django REST Framework-based API for managing products and reviews in an e-commerce platform. It supports CRUD operations for products and reviews with authentication and filtering.
 
-Product Management: Create, retrieve, delete, and filter products.
+## Features
+- **User Authentication:** Token-based authentication for secure access.
+- **Product Management:** Create, view, delete, and filter products.
+- **Review Management:** Users can add, view, and delete product reviews.
+- **Filtering & Searching:** Filter products by category and availability, and search by name or price.
 
-Review System: Users can add, view, and delete product reviews.
+## Tech Stack
+- **Backend:** Django, Django REST Framework
+- **Database:** PostgreSQL (or SQLite for development)
+- **Authentication:** Token Authentication
 
-Filtering & Searching:
+---
 
-Filter products by category or stock status.
+## Installation & Setup
 
-Search products by name or price.
-
-🛠 Tech Stack
-Backend: Django, Django REST Framework
-
-Database: PostgreSQL (or SQLite for development)
-
-Authentication: Token Authentication
-
-📦 Installation & Setup
-Clone the repository
-
-bash
-Copy
-Edit
-git clone https://github.com/okinyoCoder/ecommerce-api.git
+### 1. Clone the repository
+```sh
+git clone https://github.com/yourusername/ecommerce-api.git
 cd ecommerce-api
-Create & activate a virtual environment
-
-bash
-Copy
-Edit
 python -m venv venv
-
 # On Windows
 venv\Scripts\activate
-
 # On macOS/Linux
 source venv/bin/activate
-Install dependencies
-
-bash
-Copy
-Edit
 pip install -r requirements.txt
-🔐 Authentication Endpoints
-Method	Endpoint	Description
-POST	/register/	Register a new user
-POST	/login/	Authenticate and retrieve token
-📦 Product Endpoints
-Method	Endpoint	Description	Permission
-GET	/products/	List all products	Public
-POST	/products/create/	Create a new product	Admin
-GET	/products/<id>/	Retrieve a product	Public
-DELETE	/products/<id>/delete/	Delete a product	Admin
-📝 Review Endpoints
-Method	Endpoint	Description	Permission
-GET	/reviews/	List all reviews	Public
-POST	/reviews/create/	Add a new review	Authenticated
-GET	/reviews/<id>/	Retrieve a review	Public
-DELETE	/reviews/<id>/delete/	Delete a review	Admin
-🔍 Filtering & Searching
+
+Authentication
+Method	Endpoint	    Description
+POST	/register/	    Register a new user
+POST	/login/  	    Authenticate and get tok
+
 Products
-?category=<category_name> – Filter by category
+Method	Endpoint	            Description	Permission
+GET	    /products/	            List all products	Public
+POST    /products/create/	    Create a new product	Admin
+GET	    /products/<id>/	        Retrieve a product	Public
+DELETE	/products/<id>/delete/	Delete a product	Admin
 
-?stock_available=True – Show only available products
-
-?search=<name_or_price> – Search by product name or price
 
 Reviews
-?user=<user_id> – Filter reviews by user
+Method	        Endpoint	            Description	Permission
+GET	            /reviews/	            List all reviews Public
+POST	        /reviews/create/	    Create a new review	Authenticated
+GET	            /reviews/<id>/	        Retrieve a review Public
+DELETE	        /reviews/<id>/delete/	Delete a review	Admin
 
-?ordering=created_date – Order reviews by date
 
-📫 Contributing
-Contributions, issues, and feature requests are welcome! Feel free to open an issue or submit a pull request.
+Filtering & Searching
+Products
+?category=<category_name> → Filter by category
+?stock_available=True → Show only available products
+?search=<name_or_price> → Search products by name or price
 
-Let me know if you’d like to add screenshots, an API schema (e.g., Swagger), or deployment instructions!
+Reviews
+?user=<user_id> → Filter reviews by user
+?ordering=created_date → Order reviews by date
